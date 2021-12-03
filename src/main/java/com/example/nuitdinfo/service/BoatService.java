@@ -34,7 +34,7 @@ public class BoatService {
     public Boat getById(String id) throws BadIdException {
         Optional<Boat> boat =  boatRepository.findById(id);
 
-        if (boat.isEmpty())
+        if (!boat.isPresent())
             throw new BadIdException("Boat not found");
 
         return boat.get();

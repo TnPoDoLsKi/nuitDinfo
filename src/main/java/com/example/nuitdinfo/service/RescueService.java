@@ -51,7 +51,7 @@ public class RescueService {
     public Rescue getById(String id) throws BadIdException {
         Optional<Rescue> rescue =  rescueRepository.findById(id);
 
-        if (rescue.isEmpty())
+        if (!rescue.isPresent())
             throw new BadIdException("Rescue not found");
 
         return rescue.get();

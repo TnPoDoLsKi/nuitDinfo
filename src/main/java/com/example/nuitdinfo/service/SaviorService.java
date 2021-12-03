@@ -53,7 +53,7 @@ public class SaviorService {
     public Savior getById(String id) throws BadIdException {
         Optional<Savior> savior =  saviorRepository.findById(id);
 
-        if (savior.isEmpty())
+        if (!savior.isPresent())
             throw new BadIdException("savior not found");
 
         return savior.get();
