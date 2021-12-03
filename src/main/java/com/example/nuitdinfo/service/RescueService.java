@@ -13,7 +13,9 @@ import com.example.nuitdinfo.repository.ParticipationRepository;
 import com.example.nuitdinfo.repository.RescueRepository;
 import com.example.nuitdinfo.repository.SaviorRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.bson.BsonBinarySubType;
 import org.bson.json.JsonObject;
+import org.bson.types.Binary;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
@@ -188,5 +190,17 @@ public class RescueService {
         });
 
         return rescueDTOS;
+    }
+
+
+    public Rescue addSound(String id , MultipartFile multipartFile) throws IOException, BadIdException {
+        Optional<Rescue > rescue = rescueRepository.findById(id);
+
+        if (!rescue.isPresent())
+            throw new BadIdException("Id not found");
+
+        rescue.get().setSound(new Binary(BsonBinarySubType.BINARY, multipartFile.getBytes()));
+
+        return rescueRepository.save(rescue.get());
     }
 }

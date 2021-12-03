@@ -1,6 +1,7 @@
 package com.example.nuitdinfo.entity;
 
 import lombok.Data;
+import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,6 +22,7 @@ public class Rescue {
     private String location ;
     private Integer death;
     private Boolean approved = false;
+    private Binary sound;
 
     @DBRef
     private Boat boat;

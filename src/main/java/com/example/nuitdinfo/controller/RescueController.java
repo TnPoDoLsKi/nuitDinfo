@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -50,6 +51,11 @@ public class RescueController {
     @PostMapping("/seed")
     private ResponseEntity<RescueDTO[]> seedData(@RequestParam MultipartFile file){
         return ResponseEntity.ok(rescueService.seed(file));
+    }
+
+    @PostMapping("/sound/{id}")
+    private ResponseEntity<Rescue> updateSound(@PathVariable String id,@RequestParam MultipartFile file ) throws IOException, BadIdException {
+        return ResponseEntity.ok(rescueService.addSound(id,file));
     }
 
 
