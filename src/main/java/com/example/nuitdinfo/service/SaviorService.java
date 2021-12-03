@@ -59,9 +59,7 @@ public class SaviorService {
         return savior.get();
     }
 
-    public Rescue delete(String id){
-        return saviorRepository.deleteSaviorById(id);
-    }
+
 
 
 

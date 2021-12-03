@@ -11,5 +11,4 @@ import java.util.Optional;
 public interface SaviorRepository extends MongoRepository<Savior,String> {
     Optional<Savior> findSaviorByName(String name);
 
-    Rescue deleteSaviorById(String id);
 }
